@@ -869,7 +869,7 @@ function productPageDOM () {
     relatedProductsContainer.setAttribute('class', 'jcarousel');
 
     var sliderWrapper = document.createElement('ul');
-    sliderWrapper.setAttribute('id', 'related-slider');
+    sliderWrapper.setAttribute('id', 'related-carousel');
 
     var $relatedProducts = $('body.product-details #main_content div.col.center.nosides > .container .grid.related-products.results > ul li');
     $(sliderWrapper).append($relatedProducts);
