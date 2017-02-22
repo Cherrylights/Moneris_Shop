@@ -11,11 +11,6 @@ $('head').append(metaTag);
 
 
 
-
-
-
-
-
 // *****************************Menu Bar*************************************************
 
 if (window.matchMedia('(max-width: 1024px)').matches) {
@@ -183,9 +178,6 @@ $POSItem.hover(function() {
 }, function() {
     $('#pos-sub').hide();
 });
-
-
-
 
 
 
@@ -368,6 +360,9 @@ $('div.wrapper.footer div.container').append(footerLeft).append(footerRight);
 
 
 
+
+
+
 // *****************************Home Page********************************************
 
 
@@ -459,28 +454,28 @@ function homePageDOM () {
 
     // Buttom Action Buttons
 
-    var productImage = document.createElement('div');
+    // var productImage = document.createElement('div');
 
-    productImage.setAttribute('class','product-image');
+    // productImage.setAttribute('class','product-image');
 
-    var $imageAnchor = $('li.item > .container > a.product-img');
+    // var $imageAnchor = $('li.item > .container > a.product-img');
 
-    $imageAnchor.wrap(productImage);
+    // $imageAnchor.wrap(productImage);
 
 
-    var quickView = document.createElement('a');
-    quickView.setAttribute('class','quick-view');
+    // var quickView = document.createElement('a');
+    // quickView.setAttribute('class','quick-view');
 
-    $('.product-image').append(quickView);
+    // $('.product-image').append(quickView);
 
-    $('.quick-view').each(function() {
-        var anchorValue = $(this).prev().attr('href');
-        $(this).attr('href',anchorValue);
-    });
+    // $('.quick-view').each(function() {
+    //     var anchorValue = $(this).prev().attr('href');
+    //     $(this).attr('href',anchorValue);
+    // });
 
-    $('.quick-view').click(function() {
-        $(this).colorbox({iframe:true, width:'1000px', height:'550px', maxHeight: '550px', fixed:true});
-    });
+    // $('.quick-view').click(function() {
+    //     $(this).colorbox({iframe:true, width:'1000px', height:'550px', maxHeight: '550px', fixed:true});
+    // });
 
 
     // $('button.btn.sr-add-to-cart').click(function() {
@@ -721,6 +716,12 @@ if($('body').hasClass('home')) {
 
 
 
+
+
+
+
+
+
 // *****************************Product Page********************************************
 
 function productPageDOM () {
@@ -860,13 +861,45 @@ function productPageDOM () {
     } else {
         $('#main_content div.related-products.results > h2.title').text('You may also be interested in the following product(s)');
     }
+    
+    
+     // Related Products Slider
+     
+    var relatedProductsContainer = document.createElement('div');
+    relatedProductsContainer.setAttribute('class', 'jcarousel');
 
+    var sliderWrapper = document.createElement('ul');
+    sliderWrapper.setAttribute('id', 'related-slider');
+
+    var $relatedProducts = $('body.product-details #main_content div.col.center.nosides > .container .grid.related-products.results > ul li');
+    $(sliderWrapper).append($relatedProducts);
+    
+    $(relatedProductsContainer).prepend(sliderWrapper);
+
+    var prevProductArrow = document.createElement('a');
+    prevProductArrow.setAttribute('href', '#');
+    prevProductArrow.setAttribute('class', 'jcarousel-control-prev');
+
+    var nextProductArrow = document.createElement('a');
+    nextProductArrow.setAttribute('href', '#');
+    nextProductArrow.setAttribute('class', 'jcarousel-control-next');
+
+    $(relatedProductsContainer).append(prevProductArrow);
+    $(relatedProductsContainer).append(nextProductArrow);
+    
+    var $relatedTitle = $('body.product-details #main_content div.col.center.nosides > .container .grid.related-products.results > h2');
+    $relatedTitle.after(relatedProductsContainer);
 }
 
 
 if($('body').hasClass('product-details')) {
     productPageDOM();
 }
+
+
+
+
+
 
 
 
@@ -979,44 +1012,7 @@ if($('body').hasClass('search-results')) {
 
 
 
-
-
-
-
-
-
 // ****************************Shopping Cart Page**************************************
-
-
-function shoppingcartPageDOM () {
-
-    var $cartWrapper = $('body.cart .wrapper.body > div.container');
-
-    var cartCarousal = document.createElement('div');
-    cartCarousal.setAttribute('class', 'carousal-container');
-
-    var cartImageWrapper = document.createElement('div');
-    cartImageWrapper.setAttribute('class', 'carousal-image-wrapper');
-
-    var cartImage = document.createElement('img');
-    cartImage.setAttribute('src','/img/css/misc-privacy.jpg');
-
-    var cartTitle = document.createElement('div');
-    cartTitle.setAttribute('class', 'carousal-text');
-    cartTitle.innerHTML = 'Shopping Cart';
-
-    $(cartImageWrapper).append(cartImage);
-
-    $(cartCarousal).append(cartImageWrapper).append(cartTitle);
-
-    $cartWrapper.prepend(cartCarousal);
-}
-
-    
-if($('body').hasClass('cart')) {
-    shoppingcartPageDOM();
-}
-
 
 // var $cartWrapper = $('#main_content #cart');
 
@@ -1065,9 +1061,34 @@ if($('body').hasClass('cart')) {
 
 
 
+function shoppingcartPageDOM () {
 
+    var $cartWrapper = $('body.cart .wrapper.body > div.container');
 
+    var cartCarousal = document.createElement('div');
+    cartCarousal.setAttribute('class', 'carousal-container');
 
+    var cartImageWrapper = document.createElement('div');
+    cartImageWrapper.setAttribute('class', 'carousal-image-wrapper');
+
+    var cartImage = document.createElement('img');
+    cartImage.setAttribute('src','/img/css/misc-privacy.jpg');
+
+    var cartTitle = document.createElement('div');
+    cartTitle.setAttribute('class', 'carousal-text');
+    cartTitle.innerHTML = 'Shopping Cart';
+
+    $(cartImageWrapper).append(cartImage);
+
+    $(cartCarousal).append(cartImageWrapper).append(cartTitle);
+
+    $cartWrapper.prepend(cartCarousal);
+}
+
+    
+if($('body').hasClass('cart')) {
+    shoppingcartPageDOM();
+}
 
 
 
@@ -1112,13 +1133,6 @@ if($('body').hasClass('policies')) {
 
 
 
-
-
-
-
-
-
-
 // ****************************Login Page********************************
 
 function loginPageDOM () {
@@ -1154,12 +1168,6 @@ function loginPageDOM () {
 if($('body').hasClass('login')) {
     loginPageDOM();
 }
-
-
-
-
-
-
 
 
 
@@ -1227,11 +1235,6 @@ function registerPageDOM () {
 if($('body').hasClass('create_account')) {
     registerPageDOM();
 }
-
-
-
-
-
 
 
 
@@ -1337,12 +1340,6 @@ if($('body').hasClass('control-panel logged-in')) {
 
 
 
-
-
-
-
-
-
 // ****************************Checkout Page********************************
 
 function checkoutPageDOM () {
@@ -1410,11 +1407,6 @@ if($('body').hasClass('checkout')) {
 
 
 
-
-
-
-
-
 // ****************************Order Review Page********************************
 
 function orderReviewPageDOM () {
@@ -1457,11 +1449,6 @@ function orderReviewPageDOM () {
 if($('body').hasClass('order-review')) {
     orderReviewPageDOM();
 }
-
-
-
-
-
 
 
 
@@ -1529,11 +1516,6 @@ function orderDetailsPageDOM () {
 if($('body').hasClass('order-details')) {
     orderDetailsPageDOM();
 }
-
-
-
-
-
 
 
 
@@ -1775,11 +1757,6 @@ $('#drop-down').slicknav({
 
 
 
-
-
-
-
-
 // ****************************Color Box********************************
 
 $(document).bind('cbox_complete', function() {
@@ -1790,11 +1767,6 @@ $(document).bind('cbox_complete', function() {
 $(document).bind('cbox_closed', function() {
     $('#lightboxOverlay').css('display','none');
 });
-
-
-
-
-
 
 
 
