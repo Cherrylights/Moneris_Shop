@@ -853,8 +853,45 @@ function productPageDOM () {
     }
 
 
+     // Product Thumbnail Carousel
+     
+    var productThumbnailContainer = document.createElement('div');
+    productThumbnailContainer.setAttribute('class', 'jcarousel');
 
-    // Related Products
+    var productThumbnailWrapper = document.createElement('ul');
+    productThumbnailWrapper.setAttribute('id', 'thumbnail-slider');
+
+    var $productThumbnails = $('body.product-details #main_content #product-image .product-media-thumbnails div.product-thumb-wrapper');
+    $productThumbnails.each(function() {
+        var liWrapper = document.createElement('li');
+        liWrapper.setAttribute('class', 'thumbnail-li');
+        $(this).wrap(liWrapper);
+    });
+    
+    var $productThumbnailsLi = $('body.product-details #main_content #product-image .product-media-thumbnails li.thumbnail-li');
+    
+
+    $(productThumbnailWrapper).append($productThumbnailsLi);
+    
+    $(productThumbnailContainer).prepend(productThumbnailWrapper);
+
+    var prevThumbnailArrow = document.createElement('a');
+    prevThumbnailArrow.setAttribute('href', '#');
+    prevThumbnailArrow.setAttribute('class', 'jcarousel-control-prev');
+
+    var nextThumbnailArrow = document.createElement('a');
+    nextThumbnailArrow.setAttribute('href', '#');
+    nextThumbnailArrow.setAttribute('class', 'jcarousel-control-next');
+
+    $(productThumbnailContainer).append(prevThumbnailArrow);
+    $(productThumbnailContainer).append(nextThumbnailArrow);
+    
+    var $productThumbnailsDiv = $('body.product-details #main_content div.col.center.nosides > .container #product-image > div.product-media-thumbnails');
+    $productThumbnailsDiv.append(productThumbnailContainer);
+
+
+
+    // Related Products Title
 
     if($('body').hasClass('lang-FR')) {
         $('#main_content div.related-products.results > h2.title').text('Vous pourriez également être intéressé par le(s) produit(s) suivant(s)');
@@ -863,13 +900,13 @@ function productPageDOM () {
     }
     
     
-     // Related Products Slider
+     // Related Products Carousel
      
     var relatedProductsContainer = document.createElement('div');
     relatedProductsContainer.setAttribute('class', 'jcarousel');
 
     var sliderWrapper = document.createElement('ul');
-    sliderWrapper.setAttribute('id', 'related-carousel');
+    sliderWrapper.setAttribute('id', 'related-slider');
 
     var $relatedProducts = $('body.product-details #main_content div.col.center.nosides > .container .grid.related-products.results > ul li');
     $(sliderWrapper).append($relatedProducts);
@@ -1796,6 +1833,61 @@ $(document).bind('cbox_closed', function() {
                 }
 
                 carousel.jcarousel('items').css('width', Math.ceil(width) + 'px');
+            })
+            .jcarousel({
+                wrap: 'circular'
+            });
+
+        $('.jcarousel-control-prev')
+            .jcarouselControl({
+                target: '-=1'
+            });
+
+        $('.jcarousel-control-next')
+            .jcarouselControl({
+                target: '+=1'
+            });
+
+        $('.jcarousel-pagination')
+            .on('jcarouselpagination:active', 'a', function() {
+                $(this).addClass('active');
+            })
+            .on('jcarouselpagination:inactive', 'a', function() {
+                $(this).removeClass('active');
+            })
+            .on('click', function(e) {
+                e.preventDefault();
+            })
+            .jcarouselPagination({
+                perPage: 1,
+                item: function(page) {
+                    return '' + page + '';
+                }
+            });
+    });
+})(jQuery);
+
+
+(function($) {
+    $(function() {
+        var jcarouselThumbnail = $('.jcarousel-thumbnail');
+
+        jcarouselThumbnail
+            .on('jcarousel:reload jcarousel:create', function () {
+                var carouselThumbnail = $(this),
+                    width = carouselThumbnail.innerWidth();
+
+                if (width >= 1000) {
+                    width = width / 20;
+                } else if (width >= 804) {
+                    width = width / 10;
+                } else if (width >= 368) {
+                    width = width / 5;
+                } else if (width >= 10) {
+                    width = width / 1;
+                }
+
+                carouselThumbnail.jcarousel('items').css('width', Math.ceil(width) + 'px');
             })
             .jcarousel({
                 wrap: 'circular'
