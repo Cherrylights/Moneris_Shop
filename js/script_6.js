@@ -755,7 +755,10 @@ function productPageDOM () {
 
     $('#product_details #product-image .product-media-thumbnails a').attr('rel', '');
 
-
+    //Make the Product Image unclickable
+    
+    $('#main_image_a').removeAttr('href');
+    $('#main_image_a').removeAttr('rel');
 
     // Adding Product Page Qty Arrows
 
@@ -851,12 +854,12 @@ function productPageDOM () {
     } else {
         $('#product_details > .col.two > .product.actions li.field.qty label').text('Quantity: ');
     }
-
-
+    
+    
      // Product Thumbnail Carousel
      
     var productThumbnailContainer = document.createElement('div');
-    productThumbnailContainer.setAttribute('class', 'jcarousel');
+    productThumbnailContainer.setAttribute('class', 'jcarousel thumbnails');
 
     var productThumbnailWrapper = document.createElement('ul');
     productThumbnailWrapper.setAttribute('id', 'thumbnail-slider');
@@ -877,11 +880,11 @@ function productPageDOM () {
 
     var prevThumbnailArrow = document.createElement('a');
     prevThumbnailArrow.setAttribute('href', '#');
-    prevThumbnailArrow.setAttribute('class', 'jcarousel-control-prev');
+    prevThumbnailArrow.setAttribute('class', 'jcarousel-control-prev thumb-prev');
 
     var nextThumbnailArrow = document.createElement('a');
     nextThumbnailArrow.setAttribute('href', '#');
-    nextThumbnailArrow.setAttribute('class', 'jcarousel-control-next');
+    nextThumbnailArrow.setAttribute('class', 'jcarousel-control-next thumb-next');
 
     $(productThumbnailContainer).append(prevThumbnailArrow);
     $(productThumbnailContainer).append(nextThumbnailArrow);
@@ -889,9 +892,12 @@ function productPageDOM () {
     var $productThumbnailsDiv = $('body.product-details #main_content div.col.center.nosides > .container #product-image > div.product-media-thumbnails');
     $productThumbnailsDiv.append(productThumbnailContainer);
 
-
-
-    // Related Products Title
+    $productThumbnailsLi.click(function() {
+        $productThumbnailsLi.removeClass('selected');
+        $(this).addClass('selected');
+    });
+    
+    // Related Products
 
     if($('body').hasClass('lang-FR')) {
         $('#main_content div.related-products.results > h2.title').text('Vous pourriez également être intéressé par le(s) produit(s) suivant(s)');
@@ -900,7 +906,7 @@ function productPageDOM () {
     }
     
     
-     // Related Products Carousel
+     // Related Products Slider
      
     var relatedProductsContainer = document.createElement('div');
     relatedProductsContainer.setAttribute('class', 'jcarousel');
@@ -1837,60 +1843,28 @@ $(document).bind('cbox_closed', function() {
             .jcarousel({
                 wrap: 'circular'
             });
+            
+            var jcarouselThumb = $('.jcarousel.thumbnails');
 
-        $('.jcarousel-control-prev')
-            .jcarouselControl({
-                target: '-=1'
-            });
-
-        $('.jcarousel-control-next')
-            .jcarouselControl({
-                target: '+=1'
-            });
-
-        $('.jcarousel-pagination')
-            .on('jcarouselpagination:active', 'a', function() {
-                $(this).addClass('active');
-            })
-            .on('jcarouselpagination:inactive', 'a', function() {
-                $(this).removeClass('active');
-            })
-            .on('click', function(e) {
-                e.preventDefault();
-            })
-            .jcarouselPagination({
-                perPage: 1,
-                item: function(page) {
-                    return '' + page + '';
-                }
-            });
-    });
-})(jQuery);
-
-
-(function($) {
-    $(function() {
-        var jcarouselThumbnail = $('.jcarousel-thumbnail');
-
-        jcarouselThumbnail
+        jcarouselThumb
             .on('jcarousel:reload jcarousel:create', function () {
-                var carouselThumbnail = $(this),
-                    width = carouselThumbnail.innerWidth();
+                var carousel = $(this),
+                    width = carousel.innerWidth();
 
-                if (width >= 1000) {
-                    width = width / 20;
-                } else if (width >= 804) {
-                    width = width / 10;
-                } else if (width >= 368) {
+                if (width >= 600) {
+                    width = width / 8;
+                } else if (width >= 500) {
+                    width = width / 7;
+                } else if (width >= 400) {
                     width = width / 5;
-                } else if (width >= 10) {
-                    width = width / 1;
+                } else {
+                    width = width / 4;
                 }
 
-                carouselThumbnail.jcarousel('items').css('width', Math.ceil(width) + 'px');
+                carousel.jcarousel('items').css('width', Math.ceil(width) + 'px');
             })
             .jcarousel({
-                wrap: 'circular'
+                wrap: 'last'
             });
 
         $('.jcarousel-control-prev')
@@ -1921,9 +1895,6 @@ $(document).bind('cbox_closed', function() {
             });
     });
 })(jQuery);
-
-
-
 
 
 
