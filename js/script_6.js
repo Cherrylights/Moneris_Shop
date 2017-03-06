@@ -740,6 +740,10 @@ function productPageDOM () {
     productDetailsTitle.setAttribute('class', 'carousal-text');
 
     var $productName = $('#product_details > .col.two > h1.title.product').text();
+    
+    var $newProductName = $.parseHTML($productName);
+    
+    $('#product_details > .col.two > h1.title.product').html($newProductName);
 
     productDetailsTitle.innerHTML = $productName;
 
@@ -833,14 +837,16 @@ function productPageDOM () {
         }
     };
 
-
+    // Remove br tag in the Title
+    
+    $('h1.title.product br').replaceWith(' ');
 
     // Add Description on the top
 
     var productDesc = document.createElement('div');
     productDesc.setAttribute('class',"product-desc");
 
-    var productDescContent = $('#tab_desc > div.ldesc').text();
+    var productDescContent = $('#tab_desc > div.ldesc').html();
 
     productDesc.innerHTML = productDescContent;
 
@@ -1033,13 +1039,30 @@ function searchPageDOM () {
     // Pager
 
     $(document).ajaxComplete(function() { 
-        $('a.forward').parent().css('display', 'none');
+        //$('a.forward').parent().css('display', 'none');
+        $('a.forward').text('');
         
-        $('a.last').parent().css('display', 'none');
+        //$('a.last').parent().css('display', 'none');
+        $('a.last').text('');
         
-        $('a.first').parent().css('display', 'none');
+        //$('a.first').parent().css('display', 'none');
+        $('a.first').text('');
         
-        $('a.back').parent().css('display', 'none');
+        //$('a.back').parent().css('display', 'none');
+        $('a.back').text('');
+        
+        $('a.forward-five').text('');
+        
+        $('a.back-five').text('');
+        
+        if (window.matchMedia('(max-width: 500px)').matches) {
+            $('a.forward').parent().css('display', 'none');
+            $('a.last').parent().css('display', 'none');
+            $('a.first').parent().css('display', 'none');
+            $('a.back').parent().css('display', 'none');
+            $('a.forward-five').parent().css('display', 'none');
+            $('a.back-five').parent().css('display', 'none');
+        }
     });
 }
 
@@ -1155,9 +1178,10 @@ function policyPageDOM () {
     var policyImage = document.createElement('img');
     policyImage.setAttribute('src','/img/css/misc-privacy.jpg');
 
+    var $policyTitleText = $('h1.policy-carousel-title').text();
     var policyTitle = document.createElement('div');
     policyTitle.setAttribute('class', 'carousal-text')
-    policyTitle.innerHTML = 'Policies';
+    policyTitle.innerHTML = $policyTitleText;
 
     $(policyImageWrapper).append(policyImage);
 
