@@ -2036,3 +2036,4 @@ $(document).bind('cbox_closed', function() {
 
 
 
+// This is for testing the email and name setting in git
