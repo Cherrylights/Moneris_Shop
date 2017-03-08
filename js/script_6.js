@@ -8,7 +8,9 @@ metaTag.setAttribute('content', 'width=device-width, initial-scale=1, maximum-sc
 $('head').append(metaTag);
 
 
-
+var $titleTagText = $('head title').text();
+var $titleTagText_parsed = $.parseHTML($titleTagText);
+$('head title').html($titleTagText_parsed);
 
 
 // *****************************Menu Bar*************************************************
@@ -188,7 +190,7 @@ $POSItem.hover(function() {
 // ********************************Footer*************************************************
 
 if($('body').hasClass('lang-FR')) {
-    $('div.footer ul li.terms a').text('Conditions d?utilisation');
+    $('div.footer ul li.terms a').text("Conditions d'utilisation");
 } else {
     $('div.footer ul li.terms a').text('Terms of Use');
 };
@@ -440,6 +442,12 @@ function homePageDOM () {
 
     var $featuredProducts = $('body.home #main_content div.col.center.nosides .widget.products .container .content.grid li');
     $(sliderWrapper).append($featuredProducts);
+    
+    $('#products-slider > li.item div.product-name a').each(function() {
+        var $productName = $(this).text();
+        var $productName_parsed = $.parseHTML($productName);
+        $(this).html($productName_parsed);
+    })
 
     var prevProductArrow = document.createElement('a');
     prevProductArrow.setAttribute('href', '#');
@@ -754,15 +762,21 @@ function productPageDOM () {
     $productDetailsWrapper.prepend(productDetailsCarousal);
 
 
-
     //Remove Lightbox Effect
 
     $('#product_details #product-image .product-media-thumbnails a').attr('rel', '');
 
-    //Make the Product Image unclickable
+    //Make the Product Image Unclickable
     
     $('#main_image_a').removeAttr('href');
     $('#main_image_a').removeAttr('rel');
+    
+    //Product ID
+    
+    $('div.col.two > h1.title.product').after($('div.col.two > div#upc'));
+    
+    $('div.col.two > div#upc > span:first-child').replaceWith('SKU: ');
+    
 
     // Adding Product Page Qty Arrows
 
@@ -851,6 +865,12 @@ function productPageDOM () {
     productDesc.innerHTML = productDescContent;
 
     $('#stock').after(productDesc);
+    
+    // var $productdescription = $('#product_details > .col.two > div.product-desc').text();
+    
+    // var $newProductdescription = $.parseHTML($productdescription);
+    
+    // $('#product_details > .col.two > .product-desc').html($newProductdescription);   
 
 
 
@@ -897,6 +917,8 @@ function productPageDOM () {
     
     var $productThumbnailsDiv = $('body.product-details #main_content div.col.center.nosides > .container #product-image > div.product-media-thumbnails');
     $productThumbnailsDiv.append(productThumbnailContainer);
+    
+    $('#thumbnail-slider li:first-child').addClass('selected');
 
     $productThumbnailsLi.click(function() {
         $productThumbnailsLi.removeClass('selected');
@@ -938,6 +960,11 @@ function productPageDOM () {
     
     var $relatedTitle = $('body.product-details #main_content div.col.center.nosides > .container .grid.related-products.results > h2');
     $relatedTitle.after(relatedProductsContainer);
+    
+    // $('#related-slider li div.product-name a').each(function() {
+    //     var $relatedProductsName_parsed = $.parseHTML($(this).text());
+    //     $(this).html($relatedProductsName_parsed);
+    // });
 }
 
 
@@ -1000,6 +1027,16 @@ function searchPageDOM () {
 
     $(document).ajaxComplete(function() {
         
+        //Parse Product Name
+        
+        // $('div.product-name a').each(function() {
+        //     var $productName = $(this).text();
+        //     var $productName_parsed = $.parseHTML($productName);
+        //     $(this).html($productName_parsed);
+        // });
+        
+        
+        
         var $searchLeft = $('#main_search_result > .col.left');
         var $searchRight = $('#main_search_result > .col.center.search-results');
 
@@ -1034,7 +1071,14 @@ function searchPageDOM () {
 
     $leftCol.prepend(categTitle);
 
-
+    //Search Button
+    
+     if($('body').hasClass('lang-FR')) {
+        $('#search_frm button').text('Rechercher');
+    } else {
+        $('#search_frm button').text('Search');
+    }
+    
 
     // Pager
 
@@ -1142,13 +1186,28 @@ function shoppingcartPageDOM () {
 
     var cartTitle = document.createElement('div');
     cartTitle.setAttribute('class', 'carousal-text');
-    cartTitle.innerHTML = 'Shopping Cart';
+    if($('body').hasClass('lang-FR')) {
+        cartTitle.innerHTML = 'Panier';
+    } else {
+        cartTitle.innerHTML = 'Shopping Cart';
+    }
+    
 
     $(cartImageWrapper).append(cartImage);
 
     $(cartCarousal).append(cartImageWrapper).append(cartTitle);
 
     $cartWrapper.prepend(cartCarousal);
+    
+    var $shoppingCartName_parsed = $.parseHTML($('#shopping-cart-table div.product-name a').text());
+    $('#shopping-cart-table div.product-name a').html($shoppingCartName_parsed);
+    
+    if($('body').hasClass('lang-FR')) {
+        $('.promo-code > .container > .content > label').text('Saisissez votre code de réduction');
+    } else {
+        $('.promo-code > .container > .content > label').text('Enter your coupon code if you have one.');
+    }
+    
 }
 
     
@@ -1577,9 +1636,6 @@ function orderDetailsPageDOM () {
 }
 
 
-
-
-
 if($('body').hasClass('order-details')) {
     orderDetailsPageDOM();
 }
@@ -1587,6 +1643,62 @@ if($('body').hasClass('order-details')) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// ****************************Reset Password Page********************************
+
+function resetPasswordPageDOM () {
+
+    var $resetPasswordWrapper = $('body.reset-password .wrapper.body > .container');
+  
+    var resetPasswordCarousal = document.createElement('div');     
+    resetPasswordCarousal.setAttribute('class', 'carousal-container');
+
+    var resetPasswordImageWrapper = document.createElement('div');
+    resetPasswordImageWrapper.setAttribute('class', 'carousal-image-wrapper');
+
+    var resetPasswordImage = document.createElement('img');
+    resetPasswordImage.setAttribute('src','/img/css/misc-privacy.jpg');
+
+    var resetPasswordTitle = document.createElement('div');
+    resetPasswordTitle.setAttribute('class', 'carousal-text');
+    if($('body').hasClass('lang-FR')) {
+        resetPasswordTitle.innerHTML = 'Réinitialiser votre mot de passe';
+    } else {
+        resetPasswordTitle.innerHTML = 'Forgot Your Password';
+    }
+    
+    $(resetPasswordImageWrapper).append(resetPasswordImage);
+
+    $(resetPasswordCarousal).append(resetPasswordImageWrapper).append(resetPasswordTitle);
+
+    $resetPasswordWrapper.prepend(resetPasswordCarousal);
+    
+    var resetPasswordText = document.createElement('p');
+    if($('body').hasClass('lang-FR')) {
+        resetPasswordText.innerHTML = 'SVP Entrez votre adresse courriel ci-dessous. Vous recevrez un lien pour renouveler votre mot de passe.';
+    } else {
+        resetPasswordText.innerHTML = 'Please enter your email address below. You will receive a link to reset your password.';
+    }
+    
+    $('body.reset-password #main_content h1').after(resetPasswordText);
+
+}
+
+
+if($('body').hasClass('reset-password')) {
+    resetPasswordPageDOM();
+}
 
 
 
@@ -1841,6 +1953,8 @@ $(document).bind('cbox_closed', function() {
 
 
 
+
+
 // ****************************JCarousel********************************
 
 (function($) {
@@ -1919,7 +2033,6 @@ $(document).bind('cbox_closed', function() {
             });
     });
 })(jQuery);
-
 
 
 
