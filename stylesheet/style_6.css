@@ -1679,7 +1679,7 @@ span#right_arrow:before {
 #main_search_result .col.left {
  margin-top: 2em;
  margin-left: 2em;
- margin-right: 2em;
+ margin-right: 4em;
  padding-top: 2em;
  background: #eee;
  text-align: center;
