@@ -645,7 +645,7 @@ function homePageDOM () {
     serviceDesc2.setAttribute('class','service-desc');
 
     if($('body').hasClass('lang-FR')) {
-        serviceDesc2.innerHTML = "Protégés par les normes de sécurité les plus strictes de l?industrie.";
+        serviceDesc2.innerHTML = "Protégés par les normes de sécurité les plus strictes de l'industrie.";
     } else {
         serviceDesc2.innerHTML = "Protected by industry-leading security standards.";
     }
@@ -689,7 +689,7 @@ function homePageDOM () {
     serviceDesc3.setAttribute('class','service-desc');
 
     if($('body').hasClass('lang-FR')) {
-        serviceDesc3.innerHTML = "Si vous n?êtes pas entièrement satisfait de votre achat.";
+        serviceDesc3.innerHTML = "Si vous n'êtes pas entièrement satisfait de votre achat.";
     } else {
         serviceDesc3.innerHTML = "If you aren't fully satisfied with your purchase.";
     }
@@ -723,13 +723,6 @@ if($('body').hasClass('home')) {
 
 
 
-
-
-
-
-
-
-
 // *****************************Product Page********************************************
 
 function productPageDOM () {
@@ -747,6 +740,10 @@ function productPageDOM () {
     var productDetailsTitle = document.createElement('div');
     productDetailsTitle.setAttribute('class', 'carousal-text');
 
+    // Remove br tag in the Title
+    
+    $('#product_details > .col.two > h1.title.product br').replaceWith(' ');
+    
     var $productName = $('#product_details > .col.two > h1.title.product').text();
     
     var $newProductName = $.parseHTML($productName);
@@ -851,9 +848,6 @@ function productPageDOM () {
         }
     };
 
-    // Remove br tag in the Title
-    
-    $('h1.title.product br').replaceWith(' ');
 
     // Add Description on the top
 
@@ -979,15 +973,6 @@ if($('body').hasClass('product-details')) {
 
 
 
-
-
-
-
-
-
-
-
-
 // ****************************Search Page*******************************************
 
 function searchPageDOM () {
@@ -999,9 +984,6 @@ function searchPageDOM () {
     var searchResultsImageWrapper = document.createElement('div');
     searchResultsImageWrapper.setAttribute('class', 'carousal-image-wrapper');
 
-    var searchResultsImage = document.createElement('img');
-    searchResultsImage.setAttribute('src','/img/css/restaurant.png');
-
     var searchResultsTitle = document.createElement('div');
     searchResultsTitle.setAttribute('class', 'carousal-text');
 
@@ -1011,6 +993,29 @@ function searchPageDOM () {
         categoryTrim = $productCategory.replace('Catégories de ','');
     } else {
         categoryTrim = $productCategory.replace('Categories in ','');
+    }
+    
+    var searchResultsImage = document.createElement('img');
+    if(categoryTrim.indexOf('Paper & Labels') >= 0 || categoryTrim.indexOf('Papier et étiquettes') >= 0 || categoryTrim.indexOf('Stickers & Signage') >= 0 || categoryTrim.indexOf('Autocollants et matériel à afficher') >= 0) {
+        searchResultsImage.setAttribute('src','/img/css/hardware.jpg');
+    } else if(categoryTrim.indexOf('POS Hardware & Accessories') >= 0 || categoryTrim.indexOf('Matériel et accessoires pour PDV') >= 0 || categoryTrim.indexOf('Privacy & Security') >= 0 || categoryTrim.indexOf('Confidentialité et sécurité') >= 0 || categoryTrim.indexOf('Retail') >= 0 || categoryTrim.indexOf('Détail') >= 0) {
+        searchResultsImage.setAttribute('src','/img/css/retail.jpg');
+    } else if(categoryTrim.indexOf('POS Stands') >= 0 || categoryTrim.indexOf('Supports pour PDV') >= 0 || categoryTrim.indexOf('Cash Drawers') >= 0 || categoryTrim.indexOf('Tiroirs-caisses') >= 0) {
+        searchResultsImage.setAttribute('src','/img/css/restaurant.jpg');
+    } else if(categoryTrim.indexOf('Printers') >= 0 || categoryTrim.indexOf('Imprimantes') >= 0 || categoryTrim.indexOf('Business Types') >= 0|| categoryTrim.indexOf('Types de commerces') >= 0) {
+        searchResultsImage.setAttribute('src','/img/css/misc-privacy.jpg');
+    } else if(categoryTrim.indexOf('iPad Enclosures') >= 0 || categoryTrim.indexOf('Chevalets pour iPad') >= 0) {
+        searchResultsImage.setAttribute('src','/img/css/online-store.jpg');
+    } else if(categoryTrim.indexOf('Gift & Loyalty') >= 0 || categoryTrim.indexOf('Cartes-cadeaux et cartes de fidélité') >= 0) {
+        searchResultsImage.setAttribute('src','/img/css/business-sol.jpg');
+    } else if(categoryTrim.indexOf('Restaurant & Bar') >= 0 || categoryTrim.indexOf('Restaurants et bars') >= 0) {
+        searchResultsImage.setAttribute('src','/img/css/rest.jpg');
+    } else if(categoryTrim.indexOf('Quick Service') >= 0 || categoryTrim.indexOf('Service rapide') >= 0) {
+        searchResultsImage.setAttribute('src','/img/css/quick-service.jpg');
+    } else if(categoryTrim.indexOf('Event & Trade Show') >= 0 || categoryTrim.indexOf('Événements et salons professionnels') >= 0) {
+        searchResultsImage.setAttribute('src','/img/css/event.jpg');
+    } else {
+        searchResultsImage.setAttribute('src','/img/css/restaurant.jpg');
     }
 
     searchResultsTitle.innerHTML = categoryTrim;
@@ -1124,52 +1129,6 @@ if($('body').hasClass('search-results')) {
 
 // ****************************Shopping Cart Page**************************************
 
-// var $cartWrapper = $('#main_content #cart');
-
-// var cartCarousal = document.createElement('div');
-// cartCarousal.setAttribute('class', 'carousal-container');
-
-// var cartImageWrapper = document.createElement('div');
-// cartImageWrapper.setAttribute('class', 'carousal-image-wrapper');
-
-// var cartImage = document.createElement('img');
-// cartImage.setAttribute('src','/img/css/misc-privacy.jpg');
-
-// var cartTitle = document.createElement('div');
-// cartTitle.setAttribute('class', 'carousal-text');
-// cartTitle.innerHTML = 'Shopping Cart';
-
-// $(cartImageWrapper).append(cartImage);
-
-// $(cartCarousal).append(cartImageWrapper).append(cartTitle);
-
-// $cartWrapper.prepend(cartCarousal);
-
-
-// $(document).ajaxComplete(function() {
-//     var $cartWrapper = $('#main_content #cart');
-
-//     var cartCarousal = document.createElement('div');
-//     cartCarousal.setAttribute('class', 'carousal-container');
-
-//     var cartImageWrapper = document.createElement('div');
-//     cartImageWrapper.setAttribute('class', 'carousal-image-wrapper');
-
-//     var cartImage = document.createElement('img');
-//     cartImage.setAttribute('src','/img/css/misc-privacy.jpg');
-
-//     var cartTitle = document.createElement('div');
-//     cartTitle.setAttribute('class', 'carousal-text');
-//     cartTitle.innerHTML = 'Shopping Cart';
-
-//     $(cartImageWrapper).append(cartImage);
-
-//     $(cartCarousal).append(cartImageWrapper).append(cartTitle);
-
-//     $cartWrapper.prepend(cartCarousal);
-// });
-
-
 
 function shoppingcartPageDOM () {
 
@@ -1234,13 +1193,18 @@ function policyPageDOM () {
     var policyImageWrapper = document.createElement('div');
     policyImageWrapper.setAttribute('class', 'carousal-image-wrapper');
 
-    var policyImage = document.createElement('img');
-    policyImage.setAttribute('src','/img/css/misc-privacy.jpg');
-
     var $policyTitleText = $('h1.policy-carousel-title').text();
     var policyTitle = document.createElement('div');
     policyTitle.setAttribute('class', 'carousal-text')
     policyTitle.innerHTML = $policyTitleText;
+    
+    var policyImage = document.createElement('img');
+    if($policyTitleText.indexOf('About Us') >= 0 || $policyTitleText.indexOf('À propos de nous') >= 0 ) {
+        policyImage.setAttribute('src','/img/css/about.jpg'); 
+    } else {
+        policyImage.setAttribute('src','/img/css/misc-privacy.jpg');
+    }
+   
 
     $(policyImageWrapper).append(policyImage);
 
@@ -1655,11 +1619,61 @@ if($('body').hasClass('order-details')) {
 
 
 
+// ****************************Forgot Password Page********************************
+
+function forgotPasswordPageDOM () {
+
+    var $forgotPasswordWrapper = $('body.reset-password .wrapper.body > .container');
+  
+    var forgotPasswordCarousal = document.createElement('div');     
+    forgotPasswordCarousal.setAttribute('class', 'carousal-container');
+
+    var forgotPasswordImageWrapper = document.createElement('div');
+    forgotPasswordImageWrapper.setAttribute('class', 'carousal-image-wrapper');
+
+    var forgotPasswordImage = document.createElement('img');
+    forgotPasswordImage.setAttribute('src','/img/css/misc-privacy.jpg');
+
+    var forgotPasswordTitle = document.createElement('div');
+    forgotPasswordTitle.setAttribute('class', 'carousal-text');
+    if($('body').hasClass('lang-FR')) {
+        forgotPasswordTitle.innerHTML = 'Réinitialiser votre mot de passe';
+    } else {
+        forgotPasswordTitle.innerHTML = 'Forgot Your Password';
+    }
+    
+    $(forgotPasswordImageWrapper).append(forgotPasswordImage);
+
+    $(forgotPasswordCarousal).append(forgotPasswordImageWrapper).append(forgotPasswordTitle);
+
+    $forgotPasswordWrapper.prepend(forgotPasswordCarousal);
+    
+    var forgotPasswordText = document.createElement('p');
+    if($('body').hasClass('lang-FR')) {
+        forgotPasswordText.innerHTML = 'SVP Entrez votre adresse courriel ci-dessous. Vous recevrez un lien pour renouveler votre mot de passe.';
+    } else {
+        forgotPasswordText.innerHTML = 'Please enter your email address below. You will receive a link to reset your password.';
+    }
+    
+    $('body.reset-password #main_content h1').after(forgotPasswordText);
+
+}
+
+
+if($('body').hasClass('reset-password')) {
+    forgotPasswordPageDOM();
+}
+
+
+
+
+
+
 // ****************************Reset Password Page********************************
 
 function resetPasswordPageDOM () {
 
-    var $resetPasswordWrapper = $('body.reset-password .wrapper.body > .container');
+    var $resetPasswordWrapper = $('body.changepwd .wrapper.body > .container');
   
     var resetPasswordCarousal = document.createElement('div');     
     resetPasswordCarousal.setAttribute('class', 'carousal-container');
@@ -1673,9 +1687,9 @@ function resetPasswordPageDOM () {
     var resetPasswordTitle = document.createElement('div');
     resetPasswordTitle.setAttribute('class', 'carousal-text');
     if($('body').hasClass('lang-FR')) {
-        resetPasswordTitle.innerHTML = 'Réinitialiser votre mot de passe';
+        resetPasswordTitle.innerHTML = 'Modifier le mot de passe';
     } else {
-        resetPasswordTitle.innerHTML = 'Forgot Your Password';
+        resetPasswordTitle.innerHTML = 'Change Password';
     }
     
     $(resetPasswordImageWrapper).append(resetPasswordImage);
@@ -1683,22 +1697,15 @@ function resetPasswordPageDOM () {
     $(resetPasswordCarousal).append(resetPasswordImageWrapper).append(resetPasswordTitle);
 
     $resetPasswordWrapper.prepend(resetPasswordCarousal);
-    
-    var resetPasswordText = document.createElement('p');
-    if($('body').hasClass('lang-FR')) {
-        resetPasswordText.innerHTML = 'SVP Entrez votre adresse courriel ci-dessous. Vous recevrez un lien pour renouveler votre mot de passe.';
-    } else {
-        resetPasswordText.innerHTML = 'Please enter your email address below. You will receive a link to reset your password.';
-    }
-    
-    $('body.reset-password #main_content h1').after(resetPasswordText);
 
 }
 
 
-if($('body').hasClass('reset-password')) {
+if($('body').hasClass('changepwd')) {
     resetPasswordPageDOM();
 }
+
+
 
 
 
@@ -1938,14 +1945,14 @@ $('#drop-down').slicknav({
 
 // ****************************Color Box********************************
 
-$(document).bind('cbox_complete', function() {
-    $('iframe').css('margin-top','-30%').css('height', '159%');
-    $('#lightboxOverlay').css('width','100%').css('height','100%').css('display','block');
-});
+// $(document).bind('cbox_complete', function() {
+//     $('iframe').css('margin-top','-30%').css('height', '159%');
+//     $('#lightboxOverlay').css('width','100%').css('height','100%').css('display','block');
+// });
 
-$(document).bind('cbox_closed', function() {
-    $('#lightboxOverlay').css('display','none');
-});
+// $(document).bind('cbox_closed', function() {
+//     $('#lightboxOverlay').css('display','none');
+// });
 
 
 
@@ -2016,7 +2023,7 @@ $(document).bind('cbox_closed', function() {
             });
 
         $('.jcarousel-pagination')
-            .on('jcarouselpagination:active', 'a', function() {
+            .on('jcarouselpagination:active','a', function() {
                 $(this).addClass('active');
             })
             .on('jcarouselpagination:inactive', 'a', function() {
@@ -2036,4 +2043,3 @@ $(document).bind('cbox_closed', function() {
 
 
 
-// This is for testing the email and name setting in git

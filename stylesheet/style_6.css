@@ -1679,7 +1679,7 @@ span#right_arrow:before {
 #main_search_result .col.left {
  margin-top: 2em;
  margin-left: 2em;
- margin-right: 4em;
+ margin-right: 2em;
  padding-top: 2em;
  background: #eee;
  text-align: center;
@@ -2005,29 +2005,29 @@ a.icn:hover:before {
 /***********Search Result Text**************/
 
 #main_search_result .col.center #results div.message.info.search-results {
-    display: block;
-    border: 1px solid #ff9413;
-    color: #ff9413;
-    padding: 20px 40px;
-    border-radius: 8px;
-    min-height: 64px;
-    font-family: 'avenir-medium', sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    max-width: 700px;
-    margin: 0 auto;
+ display: block;
+ border: 1px solid #ff9413;
+ color: #ff9413;
+ padding: 20px 40px;
+ border-radius: 8px;
+ min-height: 64px;
+ font-family: 'avenir-medium', sans-serif;
+ font-size: 16px;
+ line-height: 24px;
+ max-width: 700px;
+ margin: 0 auto;
 }
 
 /*#main_search_result .col.center #results div.message.info.search-results span {*/
-/*    background: url(/img/css/caution.png) no-repeat;*/
-/*    display: inline-block;*/
-/*    width: 60px;*/
-/*    height: 60px;*/
-/*    margin: 0 40px -20px 0;*/
+/* background: url(/img/css/caution.png) no-repeat;*/
+/* display: inline-block;*/
+/* width: 60px;*/
+/* height: 60px;*/
+/* margin: 0 40px -20px 0;*/
 /*}*/
 
 #main_search_result .col.center #results div.message.info.search-results span {
-    background: none;
+ background: none;
 }
 
 
