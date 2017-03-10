@@ -2202,7 +2202,7 @@ a.icn:hover:before {
 
 .cart .options li.continue {
  text-align: left;
- width: 30%;
+ width: 33%;
 }
 
 .cart .options li.update {
@@ -2211,7 +2211,7 @@ a.icn:hover:before {
 
 .cart .options li.checkout {
  text-align: right;
- width: 50%;
+ width: 33%;
 }
 
 #cart_form {
@@ -2272,6 +2272,21 @@ a.icn:hover:before {
 .cart .promo-code .btn.add {
  padding: 14px 25px;
  font-size: 14px;
+}
+
+.cart div.message.info.cart-empty {
+    display: block;
+ border: 1px solid #ff9413;
+ color: #ff9413;
+ padding: 20px 20px;
+ border-radius: 8px;
+ min-height: 28px;
+ font-family: 'avenir-medium', sans-serif;
+ font-size: 16px;
+ line-height: 24px;
+ width: 70%;
+ max-width: 700px;
+ margin: 200px auto 0;
 }
 
 
@@ -4714,6 +4729,10 @@ ul.bxslider li img {
  
  /*General*/
  
+ /*html {*/
+ /*    overflow-x: hidden !important;*/
+ /*}*/
+ 
  body.home #main_content div.col.center.nosides div.widget.products,
  #main_content .col.center.nosides .widget.category .container ul {
  width: 95%;
@@ -4728,9 +4747,17 @@ ul.bxslider li img {
  
  #main_search_result .col.left,
  #main_search_result .col.center.search-results.oneside {
- width: 95%;
+ width: 90%;
 }
 
+button {
+    width: 100%;
+}
+
+input {
+    box-sizing: border-box;
+    padding: 5px;
+}
  
  div.carousal-text {
  height: 120px;
@@ -4772,7 +4799,48 @@ ul.bxslider li img {
  font-size: 2.3em;
  font-weight: 500;
  }
+ 
+ .required-info li {
+     margin-right: 0;
+ }
+ 
+ 
+ /*Footer*/
+ 
+ div.footer-call,
+ div.footer-email {
+     box-sizing: border-box;
+     padding: 14px 20px;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'avenir-black', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    color: #fff;
+    border-width: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #1da897;
+    margin-bottom: 15px;
+    width: 100%;
+ }
+ 
+ .footer div.footer-call span,
+ .footer div.footer-email a {
+     color: #fff;
+ }
 
+.footer-right {
+ width: 100%;   
+}
+
+body.policies div.carousal-text {
+    height: 30px;
+}
  
  /*Home Page*/
  
@@ -4895,6 +4963,10 @@ ul.bxslider li img {
  
  /*Shopping Cart*/
  
+ #cart_form {
+     width: 90%;
+ }
+ 
  #shopping-cart-table thead tr th {
  font-size: 12px;
  }
@@ -4973,6 +5045,14 @@ ul.bxslider li img {
  width: 90%;
  }
  
+ body.login li.tar ol li button {
+     width: 100%;
+ }
+ 
+ .login ol.actions li {
+    width: 100%;
+}
+ 
  /*Register Page*/
  
  #form-validate fieldset li.field label {
@@ -4980,16 +5060,43 @@ ul.bxslider li img {
  }
  
  
- /*My Account*/
+ /*Logged-in Page*/
+ 
+ /*General Info*/
+ 
+ body.logged-in div.myaccount-wrapper {
+     margin-top: 0;
+ }
+ 
+ body.control-panel.logged-in .wrapper.body > .container > #main_content .col.left {
+    width: 100%;
+    padding: 0 0 80px 0;
+}
+
+body.control-panel.logged-in .wrapper.body > .container > #main_content .col.center.oneside {
+    width: 100%;
+    padding: 0;
+}
+
+.info-box + .info-box {
+    margin-left: 0;
+}
+
+.info-box {
+    min-height: 8em;
+}
+
+ /*Account Details*/
  
  .info-box,
  .address-book-title {
- width: 100%;
+ width: 95%;
  }
  
  form#customer_info_form > fieldset > ol li input {
- width: 90%;
+ width: 100%;
  }
+ 
  
  div.my-account#main_column div.orders > table.orders > thead tr {
  font-size: 12px;
@@ -5063,6 +5170,10 @@ ul.bxslider li img {
  
  #co_shipping_method_form ol.shipping-method li#expeditors table.expeditors tbody tr td {
  padding: 2em .5em;
+ }
+ 
+ body.checkout li.tar ol li button {
+     width: 100%;
  }
  
  /*Order Review*/
