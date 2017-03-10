@@ -79,6 +79,10 @@ input {
  color: #636363;
 }
 
+input.input-text:focus, select:focus, textarea:focus {
+ border-color: #1da897 !important;
+}
+
 .page-anchor {
  padding-top: 110px;
  margin-top: -110px;
@@ -645,10 +649,15 @@ ul.bxslider li img {
  vertical-align: super;
 }
 
+body.home #slide1201 #carousel-text {
+ z-index: 100;
+}
+
 #slide1201 #carousel-text h1 {
  font-size: 36px;
  line-height: 36px;
 }
+
 
 /**************Main Content Area*****************/
 
@@ -2510,8 +2519,10 @@ body.login #main_content .col.center.nosides h1 {
 
 
 body.login #main_content .col.center.nosides .login label {
- font-size: 1.3em;
- color: #1da897;
+ color: #636363;
+ font-family: 'avenir-roman', sans-serif;
+ font-size: 16px;
+ line-height: 24px;
  
 }
 
@@ -2524,6 +2535,38 @@ body.login #main_content .col.center.nosides .login input {
  background: #fff;
  border: 1px solid #d4d2dd;
 }
+
+body.login div.login ol li.field {
+ background: #fff;
+ text-align: left;
+}
+
+
+body.login div.login ol li div.forgot-pwd {
+ text-align: left;
+ margin-top: 20px;
+}
+
+body.login div.login ol li div.forgot-pwd a {
+ color: #1b3b58;
+ text-decoration: none;
+ font-family: 'the-sans-light', sans-serif;
+}
+
+body.login div.login ol li div.forgot-pwd a:hover {
+ color: #6dc7be;
+ text-decoration: underline;
+}
+
+body.checkout #co-step-login form ol li.tac {
+ text-align: center;
+}
+
+
+body.checkout div.col.center.oneside {
+ text-align: center;
+}
+
 
 /*******************************************Account***************************************************/
 
@@ -3077,12 +3120,26 @@ body.checkout div.col.center.oneside .container h1 {
  color: #1da897;
  padding-bottom: 10px;
  margin: 0 auto 40px auto;
- width: 42%;
+ width: 95%;
  border-bottom: 1px solid #dbdbdb;
 }
 
+body.checkout #co-step-login div.login {
+ width: 100%;
+}
+
+body.checkout #co-step-login form ol li.tar ol {
+ text-align: center;
+}
+
+
+body.checkout #co-step-login form ol li.field {
+ background: #fff;
+ text-align: left;
+}
+
 body.checkout #co-step-login form ol li label {
- color: #1da897;
+ color: #636363;
  font-family: 'avenir-roman', sans-serif;
  font-size: 16px;
  line-height: 24px;
@@ -3090,12 +3147,37 @@ body.checkout #co-step-login form ol li label {
 
 
 body.checkout #co-step-login form ol li input {
- width: 90%;
+ width: 100%;
  height: 36px;
  padding: 5px 0 0 5px;
  border-radius: 4px;
  font-family: 'avenir-roman', sans-serif;
  border: 1px solid #d4d2dd;
+}
+
+body.checkout #co-step-login form ol li div.forgot-pwd {
+ text-align: left;
+ margin-top: 20px;
+}
+
+body.checkout #co-step-login form ol li div.forgot-pwd a {
+ color: #1b3b58;
+ text-decoration: none;
+ font-family: 'the-sans-light', sans-serif;
+}
+
+body.checkout #co-step-login form ol li div.forgot-pwd a:hover {
+ color: #6dc7be;
+ text-decoration: underline;
+}
+
+body.checkout #co-step-login form ol li.tac {
+ text-align: center;
+}
+
+body.checkout #co-step-login form ol li.tac img {
+ display: inline-block;
+ margin-top: 40px;
 }
 
 
@@ -3510,6 +3592,26 @@ table.totals tfoot td.total.amount {
  padding: 5px 11px;
  border-radius: 4px;
  color: #636363;
+}
+
+form fieldset ol li label {
+ color: #1da897;
+ font-family: 'avenir-roman', sans-serif;
+ font-size: 16px;
+ line-height: 24px;
+}
+
+form fieldset ol li textarea {
+ width: 100%;
+ height: 80px;
+ padding: 5px 0 0 5px;
+ border-radius: 4px;
+ font-family: 'avenir-roman', sans-serif;
+ border: 1px solid #d4d2dd;
+ color: #636363;
+ font-size: 16px;
+ line-height: 22px;
+ text-indent: 5px;
 }
 
 .order-review div.info-box.payment {
@@ -5102,3 +5204,9 @@ ul.contact-form-list > div li textarea {
  left: -170%;
  }
 }
+
+
+
+
+
+/************Font Awesome****************/
