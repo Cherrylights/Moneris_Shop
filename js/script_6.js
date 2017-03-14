@@ -1732,7 +1732,11 @@ var productsParentWrapper = document.createElement('ul');
 
 var posParent = document.createElement('li');
 posParent.setAttribute('class', 'drop-down-children');
-posParent.innerHTML = 'POS Hardware & Accessories';
+if($('body').hasClass('lang-FR')) {
+    posParent.innerHTML = 'Matériel et accessoires pour PDV';
+} else {
+    posParent.innerHTML = 'POS Hardware & Accessories';
+}
 
 var posParentWrapper = document.createElement('ul');
 
@@ -1978,7 +1982,7 @@ $('#drop-down').slicknav({
                 } else if (width >= 804) {
                     width = width / 3;
                 } else if (width >= 468) {
-                    width = width / 2;
+                 width = width / 2;
                 } else if (width >= 10) {
                     width = width / 1;
                 }
@@ -2042,4 +2046,24 @@ $('#drop-down').slicknav({
 })(jQuery);
 
 
+// ****************************FontAwesome********************************
 
+
+window.FontAwesomeCdnConfig = {
+  autoA11y: {
+    enabled: false
+  },
+  asyncLoading: {
+    enabled: false
+  },
+  reporting: {
+    
+    enabled: true,
+    domains: "localhost, *.dev"
+    
+  },
+  useUrl: "use.fontawesome.com",
+  faCdnUrl: "https://cdn.fontawesome.com:443",
+  code: "2fce9addf8"
+};
+!function(){function a(a){var b,c=[],d=document,e=d.documentElement.doScroll,f="DOMContentLoaded",g=(e?/^loaded|^c/:/^loaded|^i|^c/).test(d.readyState);g||d.addEventListener(f,b=function(){for(d.removeEventListener(f,b),g=1;b=c.shift();)b()}),g?setTimeout(a,0):c.push(a)}function b(a,b){var c=!1;return a.split(",").forEach(function(a){var d=new RegExp(a.trim().replace(".","\\.").replace("*","(.*)"));b.match(d)&&(c=!0)}),c}function c(a){"undefined"!=typeof MutationObserver&&new MutationObserver(a).observe(document,{childList:!0,subtree:!0})}function d(a){var b,c,d,e;a=a||"fa",b=document.querySelectorAll("."+a),Array.prototype.forEach.call(b,function(a){c=a.getAttribute("title"),a.setAttribute("aria-hidden","true"),d=a.nextElementSibling?!a.nextElementSibling.classList.contains("sr-only"):!0,c&&d&&(e=document.createElement("span"),e.innerHTML=c,e.classList.add("sr-only"),a.parentNode.insertBefore(e,a.nextSibling))})}!function(){"use strict";function a(a){l.push(a),1==l.length&&k()}function b(){for(;l.length;)l[0](),l.shift()}function c(a){this.a=m,this.b=void 0,this.f=[];var b=this;try{a(function(a){f(b,a)},function(a){g(b,a)})}catch(c){g(b,c)}}function d(a){return new c(function(b,c){c(a)})}function e(a){return new c(function(b){b(a)})}function f(a,b){if(a.a==m){if(b==a)throw new TypeError;var c=!1;try{var d=b&&b.then;if(null!=b&&"object"==typeof b&&"function"==typeof d)return void d.call(b,function(b){c||f(a,b),c=!0},function(b){c||g(a,b),c=!0})}catch(e){return void(c||g(a,e))}a.a=0,a.b=b,h(a)}}function g(a,b){if(a.a==m){if(b==a)throw new TypeError;a.a=1,a.b=b,h(a)}}function h(b){a(function(){if(b.a!=m)for(;b.f.length;){var a=b.f.shift(),c=a[0],d=a[1],e=a[2],a=a[3];try{0==b.a?e("function"==typeof c?c.call(void 0,b.b):b.b):1==b.a&&("function"==typeof d?e(d.call(void 0,b.b)):a(b.b))}catch(f){a(f)}}})}function i(a){return new c(function(b,c){function d(c){return function(d){g[c]=d,f+=1,f==a.length&&b(g)}}var f=0,g=[];0==a.length&&b(g);for(var h=0;h
