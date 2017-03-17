@@ -440,6 +440,10 @@ div.top-cat-menu > ul > li:first-child > ul > li:first-child #pos-sub {
 
 /***************Cart Account******************/
 
+.cart-account {
+ margin-top: 5px;
+}
+
 .cart-account a {
  background: none;
  color: #fff;
@@ -4594,6 +4598,10 @@ body.home #main_content div.col.center.nosides .widget.products .container .cont
  
  /******Nav-Bar*****/
  
+ .cart-account {
+ margin-top: 0;
+ }
+ 
  .wrapper.header {
  padding-top: 10px;
  padding-bottom: 0;
@@ -4989,10 +4997,21 @@ ul.bxslider li img {
 
 button {
  width: 100%;
+ margin: 10px 0;
 }
 
 button.btn.search {
  width: 20%;
+}
+
+a.btn.change {
+ box-sizing: border-box;
+ width: 100%;
+ margin: 10px 0;
+}
+
+.btn + .btn {
+ margin-left: 0;
 }
 
 input {
@@ -5420,8 +5439,19 @@ body.control-panel.logged-in .wrapper.body > .container > #main_content .col.cen
  /*Order Details*/
  
  body.order-details.logged-in .wrapper.body > .container > #main_content .col.left {
- padding-bottom: 50px;
+ width: 100%;
+ padding: 0 0 50px;
  }
+ 
+ body.order-details.logged-in .wrapper.body > .container > #main_content .col.center.oneside {
+ width: 100%;
+ padding: 0;
+ }
+ 
+ .info-box.receipt {
+ margin-top: 30px;
+ width: 100%;
+}
  
  table.cart.order-review thead tr th {
  font-size: 12px;
@@ -5453,6 +5483,7 @@ body.control-panel.logged-in .wrapper.body > .container > #main_content .col.cen
  margin: 1em 0 5em;
  width: 100%;
  }
+ 
  
  
  
